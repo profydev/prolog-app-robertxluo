@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { SyntheticEvent, useContext, useState } from "react";
 import { Routes } from "@config/routes";
 import classNames from "classnames";
 import { NavigationContext } from "./navigation-context";
@@ -83,7 +83,11 @@ export function SidebarNavigation() {
               text="Support"
               iconSrc="/icons/support.svg"
               isCollapsed={isSidebarCollapsed}
-              onClick={() => alert("Support")}
+              onClick={(e?: SyntheticEvent<Element, Event>): void => {
+                window.location.href =
+                  "mailto:support@prolog-app.com?subject=Support Request:";
+                e?.preventDefault();
+              }}
             />
             <MenuItemButton
               text="Collapse"
